@@ -25,15 +25,12 @@ class ASN1BMPString extends ASN1Object {
   ///
   /// Create an [ASN1BMPString] entity with the given [stringValue].
   ///
-  ASN1BMPString(
-      {this.stringValue, this.elements, int tag = ASN1Tags.BMP_STRING})
-      : super(tag: tag);
+  ASN1BMPString({this.stringValue, this.elements, int tag = ASN1Tags.BMP_STRING}) : super(tag: tag);
 
   ///
   /// Creates an [ASN1BMPString] entity from the given [encodedBytes].
   ///
-  ASN1BMPString.fromBytes(Uint8List encodedBytes)
-      : super.fromBytes(encodedBytes) {
+  ASN1BMPString.fromBytes(Uint8List encodedBytes) : super.fromBytes(encodedBytes) {
     if (ASN1Utils.isConstructed(encodedBytes.elementAt(0))) {
       elements = [];
       var parser = ASN1Parser(valueBytes);
@@ -48,7 +45,7 @@ class ASN1BMPString extends ASN1Object {
       var sb = StringBuffer();
       for (var b in valueBytes!) {
         if (b != 0) {
-          sb.write(ascii.decode([b]));
+          sb.write(ascii.decode([b], allowInvalid: true));
         }
       }
       stringValue = sb.toString();
@@ -69,8 +66,7 @@ class ASN1BMPString extends ASN1Object {
   /// Throws an [UnsupportedAsn1EncodingRuleException] if the given [encodingRule] is not supported.
   ///
   @override
-  Uint8List encode(
-      {ASN1EncodingRule encodingRule = ASN1EncodingRule.ENCODING_DER}) {
+  Uint8List encode({ASN1EncodingRule encodingRule = ASN1EncodingRule.ENCODING_DER}) {
     switch (encodingRule) {
       case ASN1EncodingRule.ENCODING_DER:
       case ASN1EncodingRule.ENCODING_BER_LONG_LENGTH_FORM:
@@ -88,8 +84,8 @@ class ASN1BMPString extends ASN1Object {
           elements!.add(ASN1BMPString(stringValue: stringValue));
         }
         valueByteLength = _childLength(
-            isIndefinite: encodingRule ==
-                ASN1EncodingRule.ENCODING_BER_CONSTRUCTED_INDEFINITE_LENGTH);
+            isIndefinite:
+                encodingRule == ASN1EncodingRule.ENCODING_BER_CONSTRUCTED_INDEFINITE_LENGTH);
         valueBytes = Uint8List(valueByteLength!);
         var i = 0;
         for (var obj in elements!) {
