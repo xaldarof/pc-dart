@@ -676,5 +676,10 @@ const oi = [
     'identifierString': '2.23.140.1.2.2',
     'readableName': 'organization-validated',
     'identifier': [2, 23, 140, 1, 2, 2]
+  },
+  {
+    'identifierString': '2.23.140.1.2.2',
+    'readableName': 'OzDSt1106',
+    'identifier': [2, 23, 140, 1, 2, 2]
   }
 ];
