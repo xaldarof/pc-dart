@@ -678,8 +678,8 @@ const oi = [
     'identifier': [2, 23, 140, 1, 2, 2]
   },
   {
-    'identifierString': '2.23.140.1.2.3',
+    'identifierString': '1.2.860.3.16.1.2',
     'readableName': 'OzDSt1106',
-    'identifier': [2, 23, 140, 1, 2, 3]
+    'identifier': [1, 2, 860, 3, 16, 1, 2]
   }
 ];
